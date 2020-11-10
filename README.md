@@ -30,7 +30,7 @@ The application logs every request and every response.
 SafetyNet Alerts is architected following the Model-View-Controller design pattern.
 
 When developing the application TDD and Agile techniques are used.
-Following are the user stories and the acceptance criteria defining the structure of the application:
+Following are the user stories and the acceptance criteria defining the behaviour of the application:
 
 1. As an emergency responder, I want to be able to get a list of people serviced by a
 specific fire station including these details: first name, last name, 
@@ -38,16 +38,23 @@ address, phone number.As well, it should provide a summary of the number of
 adults in the service area, and the number of children(anyone aged 18 and younger), 
 so I can reach them with information about an emergency situation.
 
-| ID | GIVEN | WHEN | THEN|
-| --- | --- | --- | --- |
-| 1 | 
+| ID      | GIVEN      | WHEN      | THEN     |
+| ---     | ---        | ---       | ---      |
+| 1 | I am user and there is database with people living in certain area, serviced by specific fire station | I send a request with fire station number | A list is produced that consist of people's first, last name, address, phone number and summary of the number of adults in the service area, and summary of the number of the children | 
+| 2 | I am user and there is database with no people living in certain area, serviced by specific fire station | I send a request with fire station number | An empty list is returned | 
 
-1. As an emergency responder, I want to be able to get a list of children
+
+2. As an emergency responder, I want to be able to get a list of children
 (anyone under the age of 18) living at specific address including the first and 
 last name of each child, the child's age, and a list of other people living at that
 address, so I can look after them when an emergency situation arise at that address.
 
-1. As an emergency responder, I want to be able to get a list of phone numbers of each
+| ID      | GIVEN      | WHEN      | THEN     |
+| ---     | ---        | ---       | ---      |
+| 3 | I am a user and there is database with people living at specific address | I send a request with specific address | A list of children living at that address is produced that consists of first name, last name and the age of the child along with a list with other persons living at that address |
+| 4 | I am a user and there is database with no children living at specific address | I send a request with specific address | An empty string is returned |
+
+3. As an emergency responder, I want to be able to get a list of phone numbers of each
 person within specific fire station's jurisdiction, so I can send emergency text 
 messages to specific households.
 
