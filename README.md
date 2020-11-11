@@ -63,7 +63,7 @@ messages to specific households.
 | 5 | I am an user and there is database with people living in area under specific fire station's jurisdiction | I send a request with fire station number | A list with phone numbers of all people within this fire station's jurisdiction is returned |
 | 6 | I am an user and there is database with no people living in area under specific fire station's jurisdiction | I send a request with fire station number | An empty list is returned |
 
-1. As an emergency responder, I want to be able to get the fire station number that services 
+4. As an emergency responder, I want to be able to get the fire station number that services 
 a specific address, as well as a list of all the people living at the address that 
 includes a name, phone number and age of all person, and any medications(with dosage) 
 and allergies, so I can get help in an emergency situation as well to be able to 
@@ -74,7 +74,7 @@ allocate and help all people at that address.
 | 7 | I am an user and there is database with addresses, each linked to specific fire station and each linked to all people living at this address | I send a request with address | A fire station number is returned that services that specific address, along with list of all people living at that address, with each person's name, phone number, age, medications with dosage and allergies |
 | 8 | I am an user and there is database with no addresses | I send a request with address | An empty list is returned |
 
-1. As an emergency responder, I want to be able to get a list of all the households under 
+5. As an emergency responder, I want to be able to get a list of all the households under 
 the jurisdiction of all the fire station in a list with fire stations. The list needs to 
 group people by household address, include a name, phone number and age of each person, 
 and any medications(with dosage) and allergies beside each person's name, so I know in 
@@ -85,7 +85,7 @@ case of flood, whereabouts and how many people are in the endangered area.
 | 9 | I am an user and there is database with fire stations, each related to list of households | I send a request with list of fire stations | A list is returned with all households in each fire station's jurisdiction. List should group people by household address, include name, number, age, medications (with dosages) and allergies beside each person's name |
 | 10 | I am an user and there is database fire stations, each related to no households | I send a request with list of fire stations | An empty list is returned |
 
-1. As an emergency responder , I want to be able to get person's info by passing first name and 
+6. As an emergency responder , I want to be able to get person's info by passing first name and 
 last name as parameter, so I have the person's name, address, age, email, list of medications 
 with dosages and allergies in case the person has involved in an emergency situation .
 
@@ -94,7 +94,7 @@ with dosages and allergies in case the person has involved in an emergency situa
 | 11 | I am an user and there is database with people's info | I send a request with first and last name of a person | A list is produced with person's name, address, age, email, list of medications with dosages and allergies |
 | 12 | I am an user and there is database with no people | I send a request with first and last name of a person | An empty list is returned |
 
-1. As an emergency responder, I want to be able to get list with email addresses of all people 
+7. As an emergency responder, I want to be able to get list with email addresses of all people 
 in a city by passing specific city as parameter, so I can send emails to all in case of 
 emergency.
 
@@ -103,7 +103,7 @@ emergency.
 | 13 | I am an user and there is database with cities each related to its citizen's emails | I send a request with a city name | List with all citizen's emails in that city is returned |
 | 14 | I am an user and there is database with cities where each do not relate to its citizen's emails | I send a request with a city name | An empty list is returned |
 
-1. As an admin of the system, I want to be able to add a new person to the system database, so 
+8. As an admin of the system, I want to be able to add a new person to the system database, so 
 the database can be updated when needed.
 
 | ID      | GIVEN      | WHEN      | THEN     |
@@ -111,7 +111,7 @@ the database can be updated when needed.
 | 15 | I am an admin and there is database with persons | I add a new person to the database that qualify the restrictions | A new person is created in the database with the data I provided | 
 | 16 | I am an admin and there is database with persons | I add a new person to the database that do not qualify the restrictions(unique name) | A new person is not created in the database and instead meaningful message is returned |
 
-1. As an admin of the system, I want to be able to update a person's info, so the database can 
+9. As an admin of the system, I want to be able to update a person's info, so the database can 
 be updated when needed.
 
 | ID      | GIVEN      | WHEN      | THEN     |
@@ -119,7 +119,7 @@ be updated when needed.
 | 17 | I am an admin and there is database with persons | I send a request with data da be updated to a specific person's info | The specific person info is updated and returned |
 | 18 | I am an admin and there is database with persons | I send a request with unqualified data to be updated to a specific person's info | The specific person's info is not updated and meaningful message is returned |
 
-1. As an admin of the system, I want to be able to delete a person, so the database can be updated
+10. As an admin of the system, I want to be able to delete a person, so the database can be updated
 when needed.
 
 | ID      | GIVEN      | WHEN      | THEN     |
@@ -127,7 +127,7 @@ when needed.
 | 19 | I am an admin and there is database with persons | I send a request for a person to be deleted | Person is deleted |
 | 20 | I am an admin and there is database with persons | I send a request for a non existing person to be deleted | No person is deleted in the database and meaningful message is returned |
 
-1. As an admin of the system, I want to able to add fire station/address mapping, so I can connect
+11. As an admin of the system, I want to able to add fire station/address mapping, so I can connect
 fire station with address.
 
 | ID      | GIVEN      | WHEN      | THEN     |
@@ -135,7 +135,7 @@ fire station with address.
 | 21 | I am an admin and there is database with fire stations and addresses that are mapped to each other | I add fire station/address mapping | The mapping is created |
 | 22 | I am an admin and there is database with fire station and addressed that are mapped to each other | I add fire station/ address mapping where address does not exist in the database | The mapping is not created and meaningful message is returned |
 
-1. As an admin of the system, I want to be able to update an address's fire station number, so I
+12. As an admin of the system, I want to be able to update an address's fire station number, so I
 can keep the database updated with correct information.
 
 | ID      | GIVEN      | WHEN      | THEN     |
@@ -143,7 +143,7 @@ can keep the database updated with correct information.
 | 23 | I am an admin and there is database with fire stations and addresses that are mapped to each other | I update existing fire station/address mapping with new data | The mapping is updated and returned |
 | 24 | I am an admin and there is database with fire stations and addresses that are mapped to each other | I update existing fire station/address mapping with unqualified data(non existing address) | The mapping is not updated and meaningful message is returned |
 
-1. As an admin of the system, I want to be able to delete fire station/address mapping, so I can
+13. As an admin of the system, I want to be able to delete fire station/address mapping, so I can
 remove unnecessary mappings from the database.
 
 | ID      | GIVEN      | WHEN      | THEN     |
@@ -151,7 +151,7 @@ remove unnecessary mappings from the database.
 | 25 | I am an admin and there is database with fire stations and addresses that are mapped to each other | I send a request to delete an existing mapping | The mapping is deleted successfully |
 | 26 | I am an admin and there is database with fire stations and addresses that are mapped to each other | I send a request to delete a mapping that do not exist | No mapping is deleted in the database and meaningful message is returned |
 
-1. As an admin of the system, I want to be able to add a medical record for a person, so I can keep 
+14. As an admin of the system, I want to be able to add a medical record for a person, so I can keep 
 person's info correct.
 
 | ID      | GIVEN      | WHEN      | THEN     |
@@ -159,7 +159,7 @@ person's info correct.
 | 27 | I am an admin and there is database with medical records for different persons | I add a new medical record for an existing person | A new medical record is created and returned |
 | 28 | I am an admin and there is database with medical records for different persons | I add a new medical record for a non existing person | The record is not added and meaningful message is returned |
 
-1. As an admin of the system, I want to be able to update a medical record for a person, so I can 
+15. As an admin of the system, I want to be able to update a medical record for a person, so I can 
 keep person's info updated.
 
 | ID      | GIVEN      | WHEN      | THEN     |
@@ -167,7 +167,7 @@ keep person's info updated.
 | 29 | I am an admin and there is database with medical records for different persons | I send a request to update existing medical record | The medical record is updated successfully and returned |
 | 30 | I am an admin and there is database with medical records for different persons | I send a request to update non existing medical record | The medical record is not updated and meaningful message is returned | 
 
-1. As an admin of the system, I want to be able to delete a medical record for a person, so I can 
+16. As an admin of the system, I want to be able to delete a medical record for a person, so I can 
 remove incorrect records from the database.
 
 | ID      | GIVEN      | WHEN      | THEN     |
