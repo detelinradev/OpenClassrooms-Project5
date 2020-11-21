@@ -29,7 +29,7 @@ The application logs every request and every response.
 
 SafetyNet Alerts is architected following the Model-View-Controller design pattern.
 
-When developing the application TDD and Agile techniques are used.
+When developing the application the Agile practice ATDD(acceptance test driven development) is used.
 Following are the user stories and the acceptance criteria defining the behaviour of the application:
 
 1. As an emergency responder, I want to be able to get a list of people serviced by a
