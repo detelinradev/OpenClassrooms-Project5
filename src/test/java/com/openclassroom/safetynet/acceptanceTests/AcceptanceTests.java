@@ -37,9 +37,10 @@ public class AcceptanceTests {
 
     @BeforeEach
     public void setUp() {
-        person = new Person("Cron", "Boyd", "1000 Monroe St", "Boston", "15000", "123-444-555", "cronboyd@email.com");
+        person = new Person("Cron", "Boyd", "1000 Monroe St", "Boston", "15000",
+                "123-444-555", "cronboyd@email.com");
         JacksonTester.initFields(this, new ObjectMapper());
-        mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
+//        mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
     }
 
     @Test
