@@ -3,7 +3,6 @@ package com.openclassroom.safetynet.serviceTests;
 import com.openclassroom.safetynet.model.Person;
 import com.openclassroom.safetynet.repository.contracts.PersonRepository;
 import com.openclassroom.safetynet.service.PersonServiceImpl;
-import com.openclassroom.safetynet.service.contracts.PersonService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
