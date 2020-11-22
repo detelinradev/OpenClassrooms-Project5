@@ -1,67 +1,66 @@
-package com.openclassroom.safetynet.controllerTests;
+package com.openclassroom.safetynet.integrationTests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openclassroom.safetynet.controller.PersonController;
 import com.openclassroom.safetynet.model.Person;
+import com.openclassroom.safetynet.repository.contracts.PersonRepository;
 import com.openclassroom.safetynet.service.PersonServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-@ExtendWith(MockitoExtension.class)
-public class PersonControllerTests {
+@AutoConfigureMockMvc
+@ContextConfiguration(classes = {PersonServiceImpl.class, PersonController.class})
+@WebMvcTest
+public class Controller_ServiceIT {
 
+    @Autowired
     private MockMvc mockMvc;
 
-    @Mock
-    PersonServiceImpl personService;
+    @MockBean
+    private PersonRepository personRepository;
 
-    @InjectMocks
-    PersonController personController;
-
-    private JacksonTester<Person> jsonPerson;
+    private JacksonTester<Person> jacksonTester;
     private Person person;
 
     @BeforeEach
-    private void setUp() {
-        JacksonTester.initFields(this, new ObjectMapper());
-        mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
+    private void setUp(){
+
         person = new Person();
+        JacksonTester.initFields(this,new ObjectMapper());
     }
 
     @Test
-    public void createPerson_Should_createPerson_When_dataIsValid() throws Exception {
+    public void createPerson_Should_returnPerson() throws Exception {
 
         //given
-        given(personService.createPerson(person)).willReturn(person);
+        given(personRepository.createPerson(person)).willReturn(person);
 
         //when
         MockHttpServletResponse response = mockMvc.perform(
                 post("/person")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonPerson.write(person).getJson())
-                        .accept(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jacksonTester.write(person).getJson())
+                .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
 
         //then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        assertThat(response.getContentAsString()).isEqualTo(jsonPerson.write(person).getJson());
+        assertThat(response.getContentAsString()).isEqualTo(jacksonTester.write(person).getJson());
+
     }
 
 }
