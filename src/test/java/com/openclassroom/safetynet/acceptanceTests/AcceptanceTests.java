@@ -15,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,7 +39,6 @@ public class AcceptanceTests {
         person = new Person("Cron", "Boyd", "1000 Monroe St", "Boston", "15000",
                 "123-444-555", "cronboyd@email.com");
         JacksonTester.initFields(this, new ObjectMapper());
-//        mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
     }
 
     @Test

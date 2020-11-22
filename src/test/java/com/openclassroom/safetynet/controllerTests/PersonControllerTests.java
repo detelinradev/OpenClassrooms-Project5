@@ -3,6 +3,7 @@ package com.openclassroom.safetynet.controllerTests;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openclassroom.safetynet.controller.PersonController;
 import com.openclassroom.safetynet.model.Person;
+import com.openclassroom.safetynet.service.PersonServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,7 +30,7 @@ public class PersonControllerTests {
     private MockMvc mockMvc;
 
     @Mock
-    PersonService personService;
+    PersonServiceImpl personService;
 
     @InjectMocks
     PersonController personController;
