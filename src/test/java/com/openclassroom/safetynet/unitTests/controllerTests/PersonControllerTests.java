@@ -1,4 +1,4 @@
-package com.openclassroom.safetynet.controllerTests;
+package com.openclassroom.safetynet.unitTests.controllerTests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openclassroom.safetynet.controller.PersonController;

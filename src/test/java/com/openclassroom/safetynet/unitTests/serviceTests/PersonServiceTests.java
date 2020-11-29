@@ -1,4 +1,4 @@
-package com.openclassroom.safetynet.serviceTests;
+package com.openclassroom.safetynet.unitTests.serviceTests;
 
 import com.openclassroom.safetynet.model.Person;
 import com.openclassroom.safetynet.repository.contracts.PersonRepository;

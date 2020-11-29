@@ -1,4 +1,4 @@
-package com.openclassroom.safetynet.modelTests;
+package com.openclassroom.safetynet.unitTests.modelTests;
 
 import com.openclassroom.safetynet.model.Person;
 import org.junit.jupiter.api.*;

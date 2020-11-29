@@ -19,6 +19,7 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -47,6 +48,23 @@ public class AcceptanceTests {
         //when
         MockHttpServletResponse response = mockMvc.perform(
                 post("/person")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonPerson.write(person).getJson())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+
+        //then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        assertThat(response.getContentAsString()).isEqualTo(
+                jsonPerson.write(person).getJson());
+    }
+
+    @Test
+    public void passingPersonToEndpointPersonWithPutMethod_Should_updateExistingPerson_When_conditionsAreMet() throws Exception {
+
+        //when
+        MockHttpServletResponse response = mockMvc.perform(
+                put("/person")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonPerson.write(person).getJson())
                         .accept(MediaType.APPLICATION_JSON))
