@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 @AutoConfigureMockMvc
 @ContextConfiguration(classes = {PersonServiceImpl.class, PersonController.class})
@@ -61,6 +62,25 @@ public class Controller_ServiceIT {
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(jacksonTester.write(person).getJson());
 
+    }
+
+    @Test
+    public void updatePerson_Should_updatePerson() throws Exception{
+
+        //given
+        given(personRepository.updatePerson(person)).willReturn(person);
+
+        //when
+        MockHttpServletResponse response = mockMvc.perform(
+                put("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jacksonTester.write(person).getJson())
+                .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+
+        //then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        assertThat(response.getContentAsString()).isEqualTo(jacksonTester.write(person).getJson());
     }
 
 }

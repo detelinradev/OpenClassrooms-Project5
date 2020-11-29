@@ -35,6 +35,11 @@ public class PersonRepositoryImpl implements PersonRepository {
     }
 
     @Override
+    public Person updatePerson(Person person) {
+        return person;
+    }
+
+    @Override
     public Person createPerson(Person person) {
         Map<String,String>newPerson = new HashMap<>();
         newPerson.put("firstName", person.getFirstName());

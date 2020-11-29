@@ -19,6 +19,6 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person updatePerson(Person person) {
-        return null;
+        return personRepository.updatePerson(person);
     }
 }

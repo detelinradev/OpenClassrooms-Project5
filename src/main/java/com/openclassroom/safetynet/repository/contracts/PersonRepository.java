@@ -9,4 +9,7 @@ public interface PersonRepository {
     Person createPerson(Person person);
 
     void readData() throws IOException;
+
+    Person updatePerson(Person person);
+
 }
