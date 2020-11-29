@@ -39,4 +39,15 @@ public class PersonServiceTests {
         Assertions.assertEquals(person, personService.createPerson(person));
     }
 
+    @Test
+    public void updatePerson_Should_updatePerson(){
+
+        //arrange
+        when(personRepository.updatePerson(person)).thenReturn(person);
+
+        //act & assert
+
+        Assertions.assertEquals(person,personService.updatePerson(person));
+    }
+
 }
