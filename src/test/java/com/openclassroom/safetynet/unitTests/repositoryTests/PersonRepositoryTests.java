@@ -23,12 +23,15 @@ public class PersonRepositoryTests {
     PersonRepositoryImpl personRepository;
 
     private Person person;
+    private Person updatedPerson;
     private Map<String, List<Map<String, String>>> database;
     private List<Map<String, String>> list;
 
     @BeforeEach
     private void setUp() {
         person = new Person("Cron", "Boyd", "1000 Monroe St", "Boston", "15000",
+                "123-444-555", "cronboyd@email.com");
+        updatedPerson = new Person("Michael", "Long", "1000 Monroe St", "Boston", "15000",
                 "123-444-555", "cronboyd@email.com");
         database = new HashMap<>();
         list = new ArrayList<>();
@@ -48,5 +51,19 @@ public class PersonRepositoryTests {
         //assert
         Assertions.assertEquals(person, newPerson);
         Assertions.assertNotNull(database.get("persons"));
+    }
+
+    @Test
+    public void updatePerson_Should_updatePerson(){
+
+        //arrange
+        createPerson_Should_CreatePerson();
+        doReturn(database).when(personRepository).getDatabase();
+
+        //act
+        Person newPerson = personRepository.updatePerson(updatedPerson);
+
+        //assert
+        Assertions.assertEquals(updatedPerson,newPerson);
     }
 }
