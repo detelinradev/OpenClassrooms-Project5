@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.io.IOException;
+
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {PersonServiceImpl.class, PersonRepositoryImpl.class})
 public class Service_RepositoryIT {
@@ -26,8 +28,16 @@ public class Service_RepositoryIT {
     private Person person;
 
     @BeforeEach
-    private void setUp() {
+    private void setUp() throws IOException {
         person = new Person();
+        person.setFirstName("Ivan");
+        person.setLastName("Nikolov");
+        person.setAddress("address");
+        person.setCity("city");
+        person.setZip("zip");
+        person.setPhone("phone");
+        person.setEmail("email");
+        personRepository.readData();
     }
 
     @Test

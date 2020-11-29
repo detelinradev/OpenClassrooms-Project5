@@ -16,7 +16,7 @@ import java.util.Map;
 @Component
 public class PersonRepositoryImpl implements PersonRepository {
 
-    private Map<String, List<HashMap<String,String>>> database;
+    private Map<String, List<Map<String,String>>> database;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -34,6 +34,15 @@ public class PersonRepositoryImpl implements PersonRepository {
 
     @Override
     public Person createPerson(Person person) {
+        Map<String,String>newPerson = new HashMap<>();
+        newPerson.put("firstName", person.getFirstName());
+        newPerson.put("lastName", person.getLastName());
+        newPerson.put("address", person.getAddress());
+        newPerson.put("city", person.getCity());
+        newPerson.put("zip", person.getZip());
+        newPerson.put("phone", person.getPhone());
+        newPerson.put("email", person.getEmail());
+        database.get("persons").add(newPerson);
         return person;
     }
 }
