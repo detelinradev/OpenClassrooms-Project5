@@ -3,6 +3,7 @@ package com.openclassroom.safetynet.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openclassroom.safetynet.model.Person;
 import com.openclassroom.safetynet.repository.contracts.PersonRepository;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.io.FileNotFoundException;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
+@Data
 public class PersonRepositoryImpl implements PersonRepository {
 
     private Map<String, List<Map<String,String>>> database;
@@ -22,7 +24,7 @@ public class PersonRepositoryImpl implements PersonRepository {
     @Override
     public void readData() throws IOException {
         try(Reader reader = new FileReader("dataBase.txt")){
-            database = new ObjectMapper().readValue(reader, HashMap.class);
+            setDatabase(new ObjectMapper().readValue(reader, HashMap.class));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -42,7 +44,7 @@ public class PersonRepositoryImpl implements PersonRepository {
         newPerson.put("zip", person.getZip());
         newPerson.put("phone", person.getPhone());
         newPerson.put("email", person.getEmail());
-        database.get("persons").add(newPerson);
+        getDatabase().get("persons").add(newPerson);
         return person;
     }
 }
