@@ -50,4 +50,14 @@ public class Service_RepositoryIT {
         Assertions.assertEquals(person,newPerson);
     }
 
+    @Test
+    public void updatePerson_Should_updatePerson(){
+
+        //act
+        Person newPerson =  personService.updatePerson(person);
+
+        //assert
+        Assertions.assertEquals(person,newPerson);
+    }
+
 }
