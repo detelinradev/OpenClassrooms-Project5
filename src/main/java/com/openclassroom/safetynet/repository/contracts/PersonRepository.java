@@ -12,4 +12,5 @@ public interface PersonRepository {
 
     Person updatePerson(Person person);
 
+    void deletePerson(Person person);
 }

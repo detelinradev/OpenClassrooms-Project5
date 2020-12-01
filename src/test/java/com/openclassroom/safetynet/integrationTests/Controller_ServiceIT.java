@@ -18,10 +18,12 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.io.IOException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.mockito.Mockito.doNothing;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @AutoConfigureMockMvc
 @ContextConfiguration(classes = {PersonServiceImpl.class, PersonController.class})
@@ -81,6 +83,23 @@ public class Controller_ServiceIT {
         //then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(jacksonTester.write(person).getJson());
+    }
+
+    @Test
+    public void deletePerson_Should_deletePerson() throws Exception {
+
+        //given
+       doNothing().when(personRepository).deletePerson(person);
+
+       //when
+        MockHttpServletResponse response = mockMvc.perform(
+                delete("/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jacksonTester.write(person).getJson()))
+                .andReturn().getResponse();
+
+        //then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.ACCEPTED.value());
     }
 
 }

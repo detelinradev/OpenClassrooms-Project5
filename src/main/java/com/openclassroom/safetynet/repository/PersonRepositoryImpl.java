@@ -51,6 +51,11 @@ public class PersonRepositoryImpl implements PersonRepository {
     }
 
     @Override
+    public void deletePerson(Person person) {
+
+    }
+
+    @Override
     public Person createPerson(Person person) {
         Map<String, String> newPerson = createMapFromPerson(person);
         getDatabase().get("persons").add(newPerson);
