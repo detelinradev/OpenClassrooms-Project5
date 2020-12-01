@@ -18,8 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -74,5 +73,22 @@ public class AcceptanceTests {
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(
                 jsonPerson.write(person).getJson());
+    }
+
+    @Test
+    public void passingPersonToEndpointPersonWithDeleteMethod_Should_DeleteExistingPerson_When_ConditionsAreMet() throws Exception {
+
+        //when
+        MockHttpServletResponse response = mockMvc.perform(
+                delete("/person")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonPerson.write(person).getJson())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+
+        //then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+
+
     }
 }
