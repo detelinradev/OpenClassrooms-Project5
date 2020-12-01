@@ -21,4 +21,9 @@ public class PersonServiceImpl implements PersonService {
     public Person updatePerson(Person person) {
         return personRepository.updatePerson(person);
     }
+
+    @Override
+    public void deletePerson(Person person) {
+
+    }
 }

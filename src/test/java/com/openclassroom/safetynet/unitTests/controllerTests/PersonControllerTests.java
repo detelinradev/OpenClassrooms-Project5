@@ -20,8 +20,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.mockito.Mockito.doNothing;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @ExtendWith(MockitoExtension.class)
 public class PersonControllerTests {
@@ -80,6 +80,23 @@ public class PersonControllerTests {
         //then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(jsonPerson.write(person).getJson());
+    }
+
+    @Test
+    public void deletePerson_Should_deletePerson_When_dataIsValid() throws Exception {
+
+        //given
+        doNothing().when(personService).deletePerson(person);
+
+        //when
+        MockHttpServletResponse response = mockMvc.perform(
+                delete("/person")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonPerson.write(person).getJson()))
+                .andReturn().getResponse();
+
+        //then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.ACCEPTED.value());
     }
 
 }

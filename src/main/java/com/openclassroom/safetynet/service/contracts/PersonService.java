@@ -7,4 +7,6 @@ public interface PersonService {
     Person createPerson(Person person);
 
     Person updatePerson(Person person);
+
+    void deletePerson(Person person);
 }
